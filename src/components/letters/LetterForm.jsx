@@ -87,13 +87,13 @@ function LetterForm({ addLetterSubmit }) {
     const content = event.target.content.value;
 
     //빈 input 추가 막기
-    if (!nickname && content) {
+    if (!nickname.trim() && content.trim()) {
       alert("닉네임을 입력해주세요.");
       return;
-    } else if (nickname && !content) {
+    } else if (nickname.trim() && !content.trim()) {
       alert("내용을 입력해주세요.");
       return;
-    } else if (!nickname && !content) {
+    } else if (!nickname.trim() && !content.trim()) {
       alert("닉네임과 내용을 입력해주세요.");
       return;
     }
