@@ -43,28 +43,13 @@ const StBtn = styled.button`
 const moveMemberPage = ["JENNIE", "JISOO", "ROSÉ", "LISA"];
 
 function Nav({ memberBtnClickHandler }) {
-  const memberName = (name) => {
-    switch (name) {
-      case "JENNIE":
-        return "JENNIE";
-      case "JISOO":
-        return "JISOO";
-      case "ROSÉ":
-        return "ROSÉ";
-      case "LISA":
-        return "LISA";
-      default:
-        return;
-    }
-  };
-
   return (
     <>
       <Stdiv>
         <StNav>
           {moveMemberPage.map((name) => (
             <StBtn key={name} onClick={() => memberBtnClickHandler(name)}>
-              {memberName(name)}
+              {name}
             </StBtn>
           ))}
         </StNav>
