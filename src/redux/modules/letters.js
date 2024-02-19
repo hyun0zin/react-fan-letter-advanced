@@ -1,4 +1,5 @@
 import fakeData from "../../assets/json/fakeData.json";
+
 // 팬레터 추가
 const ADD_LETTER = "letters/ADD_LETTER";
 // 팬레터 삭제
