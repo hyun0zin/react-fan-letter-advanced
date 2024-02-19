@@ -1,21 +1,33 @@
 import React from "react";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BlackPinkLogo from "../../assets/images/logo.png";
-
-const StHead = styled.header`
+const HeaderContainer = styled.header`
   background-color: black;
-
   height: 5rem;
-
-  /* position: sticky;
-  top: 0; */
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+`;
+const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
+const BtnContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+const Btn = styled.button`
+  border-color: transparent;
+  background-color: transparent;
+  color: white;
+  font-size: medium;
+  cursor: pointer;
+`;
 const StImg = styled.img.attrs({
   src: BlackPinkLogo,
   alt: "유튜브 로고",
@@ -26,17 +38,23 @@ const StImg = styled.img.attrs({
 
 function Header() {
   const navigate = useNavigate();
-  const logeClickEvent = () => {
+  const logoClickEvent = () => {
     navigate("/");
     window.location.reload();
   };
 
   return (
-    <>
-      <StHead>
-        <StImg onClick={logeClickEvent} />
-      </StHead>
-    </>
+    <HeaderContainer>
+      <LogoContainer>
+        <StImg onClick={logoClickEvent} />
+      </LogoContainer>
+      <BtnContainer>
+        <Link to="/mypage">
+          <Btn>마이페이지</Btn>
+        </Link>
+        <Btn>로그아웃</Btn>
+      </BtnContainer>
+    </HeaderContainer>
   );
 }
 
