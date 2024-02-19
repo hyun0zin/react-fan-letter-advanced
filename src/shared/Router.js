@@ -1,11 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import JENNIE from "pages/JENNIE";
-import JISOO from "pages/JISOO";
-import ROSÉ from "pages/ROSÉ";
-import LISA from "pages/LISA";
+import Login from "components/Login";
+import SignUp from "components/SignUp";
 import Layout from "components/layout/Layout";
-import MainPage from "components/MainPage";
 import LetterProvider from "context/Context";
+import DetailPage from "pages/DetailPage";
+import MainPage from "pages/MainPage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const Router = () => {
   return (
@@ -14,10 +13,9 @@ const Router = () => {
         <Layout>
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/JENNIE/:id" element={<JENNIE />} />
-            <Route path="/JISOO/:id" element={<JISOO />} />
-            <Route path="/ROSÉ/:id" element={<ROSÉ />} />
-            <Route path="/LISA/:id" element={<LISA />} />
+            <Route path="/detail/:id" element={<DetailPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
           </Routes>
         </Layout>
       </LetterProvider>
