@@ -1,5 +1,5 @@
 import { Context } from "context/Context";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -89,11 +89,10 @@ const StBtn = styled.button`
     transition: 0.5s;
   }
 `;
-function DetailPage({ foundData }) {
+function MemberLetters({ foundData }) {
   const data = useContext(Context);
   const { letters, removeBtn, updateBtn, updatedLetters } = data;
   const { writedTo, avatar, nickname, formattedData, content, id } = foundData;
-
   const navigate = useNavigate();
 
   // letter 삭제하기
@@ -172,4 +171,4 @@ function DetailPage({ foundData }) {
   );
 }
 
-export default DetailPage;
+export default MemberLetters;
