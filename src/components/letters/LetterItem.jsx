@@ -84,7 +84,7 @@ function LetterItem({ item }) {
 
   const LetterClickHandler = () => {
     if (item.writedTo === writedTo) {
-      navigate(`/${item.writedTo}/${item.id}`);
+      navigate(`/detail/${item.id}`);
     }
   };
 
