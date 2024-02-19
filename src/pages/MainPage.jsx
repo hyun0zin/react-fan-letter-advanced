@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import Nav from "./layout/Nav";
-import LetterForm from "./letters/LetterForm";
-import LetterList from "./letters/LetterList";
+import Nav from "../components/layout/Nav";
+import LetterForm from "../components/letters/LetterForm";
+import LetterList from "../components/letters/LetterList";
 import { Context } from "context/Context";
 
 function MainPage() {
