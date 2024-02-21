@@ -4,22 +4,42 @@ import Layout from "components/layout/Layout";
 import LetterProvider from "context/Context";
 import DetailPage from "pages/DetailPage";
 import MainPage from "pages/MainPage";
-import Mypage from "pages/Mypage";
+import MyPage from "pages/MyPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <LetterProvider>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/detail/:id" element={<DetailPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/mypage" element={<Mypage />} />
-          </Routes>
-        </Layout>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout>
+                <MainPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/detail/:id"
+            element={
+              <Layout>
+                <DetailPage />
+              </Layout>
+            }
+          />
+          <Route
+            path="/mypage"
+            element={
+              <Layout>
+                <MyPage />
+              </Layout>
+            }
+          />
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
       </LetterProvider>
     </BrowserRouter>
   );

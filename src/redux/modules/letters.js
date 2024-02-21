@@ -18,6 +18,7 @@ export const deleteLetter = (payload) => {
 export const editLetter = (payload) => {
   return { type: EDIT_LETTER, payload };
 };
+
 const initialState = fakeData;
 
 const letters = (state = initialState, action) => {

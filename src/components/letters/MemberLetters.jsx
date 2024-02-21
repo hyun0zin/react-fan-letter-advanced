@@ -91,18 +91,12 @@ const StBtn = styled.button`
 `;
 function MemberLetters({ foundData }) {
   const data = useContext(Context);
-  const { letters, removeBtn, updateBtn, updatedLetters } = data;
-  const { writedTo, avatar, nickname, formattedData, content, id } = foundData;
   const navigate = useNavigate();
 
-  // letter 삭제하기
-  const deleteBtnClickHandler = () => {
-    removeBtn(id);
-    alert("해당 팬레터가 삭제되었습니다");
-    navigate(`/`);
-  };
+  const { letters, deleteBtnClickHandler, updateBtn, updatedLetters } = data;
+  const { writedTo, avatar, nickname, formattedData, content, id } = foundData;
 
-  // letter 수정하기
+  // letter 수정하기 (UPDATE)
   const [isUpdateContent, setIsUpdateContent] = useState(content);
   const [isUpdate, setIsUpdate] = useState(false);
 
@@ -163,7 +157,7 @@ function MemberLetters({ foundData }) {
             <StBtn onClick={updateBtnClickHandler}>
               {isUpdate ? "수정 완료" : "수정하기"}
             </StBtn>
-            <StBtn onClick={deleteBtnClickHandler}>삭제하기</StBtn>
+            <StBtn onClick={() => deleteBtnClickHandler(id)}>삭제하기</StBtn>
           </StDiv>
         </StMain>
       </StMainContainer>

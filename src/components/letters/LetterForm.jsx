@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import "moment/locale/ko";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
+import { Context } from "context/Context";
 
 const StMainContainer = styled.div`
   display: flex;
@@ -64,9 +66,10 @@ const StBtn = styled.button`
     transition: 0.5s;
   }
 `;
-function LetterForm({ addLetterSubmit }) {
+function LetterForm() {
+  const { letters, setLetters } = useContext(Context);
+
   // 실시간 시간 불러오기
-  // const nowTime = moment().format("YYYY-MM-DD HH:mm:ss");
   const date = Date.now();
 
   // 멤버 선택하기
@@ -78,8 +81,8 @@ function LetterForm({ addLetterSubmit }) {
     setSelectedMember(selectedMember);
   };
 
-  // 팬레터 추가하기
-  const submitHandler = (event) => {
+  // letter 추가하기 (POST)
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     // console.log(event.target.nickname.value);
@@ -98,7 +101,8 @@ function LetterForm({ addLetterSubmit }) {
       return;
     }
 
-    addLetterSubmit({
+    // input에 들어있는 값(state)을 DB에 저장
+    const newLetter = {
       createdAt: date,
       nickname,
       avatar:
@@ -107,8 +111,9 @@ function LetterForm({ addLetterSubmit }) {
       writedTo: selectedMember,
       id: uuidv4(),
       isUpdate: false,
-    });
-
+    };
+    axios.post("http://localhost:4000/letters", newLetter);
+    setLetters([...letters, newLetter]);
     event.target.reset();
   };
 

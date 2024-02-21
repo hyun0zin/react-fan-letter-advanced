@@ -1,19 +1,30 @@
-import { createContext, useState } from "react";
-import fakeData from "../assets/json/fakeData.json";
+import { createContext, useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export const Context = createContext(null);
 
 const LetterProvider = ({ children }) => {
-  const [letters, setLetters] = useState(fakeData);
+  const [letters, setLetters] = useState(null);
 
-  // letter 삭제하기 버튼
-  const removeBtn = (id) => {
-    const removeLetters = letters.filter((letter) => letter.id !== id);
-
-    setLetters(removeLetters);
+  // db.json 데이터 불러오기 (GET)
+  const fetchLetters = async () => {
+    const { data } = await axios.get("http://localhost:4000/letters");
+    console.log("data", data);
+    setLetters(data);
   };
 
-  // letter 수정하기 버튼
+  const navigate = useNavigate();
+
+  // letter 삭제하기 (DELETE)
+  const deleteBtnClickHandler = async (id) => {
+    axios.delete(`http://localhost:4000/letters/${id}`);
+    alert("해당 팬레터가 삭제되었습니다");
+    navigate(`/`);
+    setLetters(letters.filter((letter) => letter.id !== id));
+  };
+
+  // letter 수정하기 (UPDATE)
   const updateBtn = (id) => {
     const updatedLetters = letters.map((letter) => {
       if (letter.id === id) {
@@ -32,24 +43,18 @@ const LetterProvider = ({ children }) => {
     setLetters(updatedLetters);
   };
 
-  //멤버별 imageUrl
-  const memberImagesData = {
-    JENNIE:
-      "https://i.pinimg.com/736x/9a/1c/b8/9a1cb83f3c42b75b55caffd76c9b5b96.jpg",
-    JISOO:
-      "https://i.pinimg.com/564x/7d/85/27/7d8527048832709dea1c4c5a04123921.jpg",
-    ROSÉ: "https://i.pinimg.com/564x/f5/4d/82/f54d828a86423aff30473d263ea9742f.jpg",
-    LISA: "https://i.pinimg.com/564x/0b/88/da/0b88da206ad13b0974b783cb6f6c6bcc.jpg",
-  };
+  useEffect(() => {
+    fetchLetters();
+  }, []);
+
   return (
     <Context.Provider
       value={{
         letters,
         setLetters,
-        removeBtn,
         updateBtn,
         updatedLetters,
-        memberImagesData,
+        deleteBtnClickHandler,
       }}
     >
       {children}

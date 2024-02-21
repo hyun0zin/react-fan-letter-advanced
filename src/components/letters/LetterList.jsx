@@ -3,16 +3,15 @@ import LetterItem from "./LetterItem";
 import { Context } from "context/Context";
 
 function LetterList({ writedTo }) {
-  const data = useContext(Context);
-  const { letters } = data;
+  const { letters } = useContext(Context);
 
-  const filteredLetters = letters.filter((letter) =>
+  const filteredLetters = letters?.filter((letter) =>
     writedTo ? letter.writedTo === writedTo : true
   );
 
   return (
     <div>
-      {filteredLetters.map((item) => {
+      {filteredLetters?.map((item) => {
         return <LetterItem key={item.id} item={item} />;
       })}
     </div>
