@@ -2,18 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import BlackPinkLogo from "../../assets/images/logo.png";
+
 const HeaderContainer = styled.header`
   background-color: black;
   height: 5rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   padding: 0 2rem;
+
+  position: relative;
 `;
+
 const LogoContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const BtnContainer = styled.div`
