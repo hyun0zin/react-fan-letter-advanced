@@ -21,7 +21,6 @@
 
 #### 3. 작성 팬레터를 누르면 `상세페이지`로 이동한다.
 
-
 ### **✅ DetailPage**
 
 #### 1. `수정하기` 버튼을 누르면 내용 수정이 가능하고, `수정완료` 버튼을 누르면 수정된 상태로 홈 화면으로 이동한다.
@@ -29,8 +28,22 @@
 #### 2. `삭제하기` 버튼을 누르면 해당 letter는 삭제가 되고, 홈 화면으로 이동한다.
 
 ### **✅ Header와 Footer**
+
 #### - Header : BLACKPINK 로고 누르면 MainPage 홈화면으로 이동
+
 #### - Footer : Youtube / Github / Blog 링크 연결
+
+### **✅ MyPage**
+
+#### 1. 개인 프로필 변경
+
+### **✅ LoginPage**
+
+#### 1. 페이지 로그인 하기
+
+### **✅ SignupPage**
+
+#### 1. 회원가입 기능
 
 <br>
 
@@ -38,10 +51,10 @@
 
 ### **`component` 구조 확인하기**
 
-<img src="./src/assets/images/components.png" align="center" width="70%" />
+<img src="./src/assets/images/component structure.png" align="center" width="70%" />
 
 <br>
 
 ## **어려웠던 점 🧐**
 
-- redux를 이용하여 전역상태를 관리하는 부분이 어려웠다.
+-
