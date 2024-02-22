@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import letterApi from "../api/letterApi";
 import { useNavigate } from "react-router-dom";
 
 export const Context = createContext(null);
@@ -9,7 +9,7 @@ const LetterProvider = ({ children }) => {
 
   // db.json 데이터 불러오기 (GET)
   const fetchLetters = async () => {
-    const { data } = await axios.get("http://localhost:4000/letters");
+    const { data } = await letterApi.get(`/letters`);
     console.log("data", data);
     setLetters(data);
   };
@@ -18,7 +18,7 @@ const LetterProvider = ({ children }) => {
 
   // letter 삭제하기 (DELETE)
   const deleteBtnClickHandler = async (id) => {
-    axios.delete(`http://localhost:4000/letters/${id}`);
+    letterApi.delete(`/letters/${id}`);
     alert("해당 팬레터가 삭제되었습니다");
     navigate(`/`);
     setLetters(letters.filter((letter) => letter.id !== id));

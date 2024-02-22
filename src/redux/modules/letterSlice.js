@@ -1,10 +1,10 @@
-import fakeData from "../../assets/json/fakeData.json";
 import { createSlice } from "@reduxjs/toolkit";
+import fakeData from "../../assets/json/fakeData.json";
 
 const initialState = fakeData;
 
 const letterSlice = createSlice({
-  name: "letter",
+  name: "letters",
   initialState,
   reducers: {
     addLetter: (state, action) => {
