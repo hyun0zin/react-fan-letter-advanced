@@ -4,6 +4,7 @@ import "moment/locale/ko";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import { Context } from "context/Context";
+import letterApi from "../../api/letterApi";
 
 const StMainContainer = styled.div`
   display: flex;
@@ -112,7 +113,7 @@ function LetterForm() {
       id: uuidv4(),
       isUpdate: false,
     };
-    axios.post("http://localhost:4001/letters", newLetter);
+    letterApi.post("/letters", newLetter);
     setLetters([...letters, newLetter]);
     event.target.reset();
   };

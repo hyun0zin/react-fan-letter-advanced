@@ -90,7 +90,7 @@ function LetterItem({ item }) {
 
   return (
     <StMainContainer>
-      <StMain onClick={LetterClickHandler} key={item.id} letters={letters}>
+      <StMain onClick={LetterClickHandler} key={item.id}>
         <StImgContainer>
           <StImg src={avatar} alt="프로필 사진" />
         </StImgContainer>

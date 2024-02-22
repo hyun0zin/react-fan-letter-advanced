@@ -2,6 +2,7 @@ import { Context } from "context/Context";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import letterApi from "../../api/letterApi";
 
 const StMainContainer = styled.div`
   display: flex;
@@ -93,7 +94,7 @@ function MemberLetters({ foundData }) {
   const data = useContext(Context);
   const navigate = useNavigate();
 
-  const { letters, deleteBtnClickHandler, updateBtn, updatedLetters } = data;
+  const { letters, setLetters, deleteBtnClickHandler } = data;
   const { writedTo, avatar, nickname, formattedData, content, id } = foundData;
 
   // letter 수정하기 (UPDATE)
@@ -101,20 +102,24 @@ function MemberLetters({ foundData }) {
   const [isUpdate, setIsUpdate] = useState(false);
 
   // 수정하기 <-> 수정 완료 버튼 설정
-  const updateBtnClickHandler = () => {
+  const updateBtnClickHandler = async () => {
     if (!isUpdate) {
       setIsUpdate(true);
     } else {
-      const isUpdateNewArr = letters.map((letter) => {
-        if (letter.id === id) {
-          return { ...letter, content: isUpdateContent };
-        }
-        return letter;
+      await letterApi.patch(`/letters/${id}`, {
+        content: isUpdateContent,
       });
-
-      updateBtn(id);
-      updatedLetters(isUpdateNewArr);
-
+      // updateBtn(id);
+      const updatedLetter = await letterApi.get(`/letters/${id}`);
+      setLetters(
+        letters.map((letter) => {
+          if (letter.id === id) {
+            return updatedLetter.data;
+          } else {
+            return letter;
+          }
+        })
+      );
       setIsUpdate(false);
       alert("해당 팬레터가 수정되었습니다");
       navigate(`/`);

@@ -24,25 +24,6 @@ const LetterProvider = ({ children }) => {
     setLetters(letters.filter((letter) => letter.id !== id));
   };
 
-  // letter 수정하기 (UPDATE)
-  const updateBtn = (id) => {
-    const updatedLetters = letters.map((letter) => {
-      if (letter.id === id) {
-        return {
-          ...letter,
-          isUpdate: !letter.isUpdate,
-          content: letter.content,
-        };
-      }
-      return letter;
-    });
-    setLetters(updatedLetters);
-  };
-
-  const updatedLetters = (updatedLetters) => {
-    setLetters(updatedLetters);
-  };
-
   useEffect(() => {
     fetchLetters();
   }, []);
@@ -52,8 +33,6 @@ const LetterProvider = ({ children }) => {
       value={{
         letters,
         setLetters,
-        updateBtn,
-        updatedLetters,
         deleteBtnClickHandler,
       }}
     >
